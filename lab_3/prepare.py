@@ -8,6 +8,7 @@ import cv2
 import os
 import h5py
 from features import fd_hu_moments, fd_haralick, fd_histogram, fd_4
+from additionalFeatures import fd_Fast, fd_Kaze
 
 # --------------------
 # tunable-parameters
@@ -69,10 +70,20 @@ for training_name in train_labels:
         fv_haralick = fd_haralick(image)
         fv_hu_moments = fd_hu_moments(image)
 
+        # new features
+        fv_Fast = fd_Fast(image)
+        fv_kaze = fd_Kaze(image)
+
         ###################################
         # Concatenate global features
         ###################################
-        global_feature = np.hstack([fv_histogram, fv_4, fv_haralick, fv_hu_moments])
+
+        # global_feature = np.hstack([fv_histogram, fv_4, fv_haralick, fv_hu_moments])
+        # global_feature = np.hstack([fv_histogram, fv_kaze])
+
+        global_feature = np.hstack([fv_histogram, fv_Fast])
+
+        # global_feature = np.hstack([fv_histogram, fv_4, fv_haralick, fv_hu_moments, fv_kaze, fv_Fast])
 
         # update the list of labels and feature vectors
         labels.append(current_label)
