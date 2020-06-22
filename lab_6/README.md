@@ -24,7 +24,7 @@ ___data/result___
 
 ## График потерь модели
 
-![](graph/plot.png ".png")
+![](graph/plot_1.png ".png")
 
 ### Больше покемонов в папке ___data___
 
